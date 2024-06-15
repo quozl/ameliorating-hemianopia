@@ -1,37 +1,56 @@
+head = document.getElementById('head')
+play = document.getElementById('play')
+stop = document.getElementById('stop')
+numb = document.getElementById('numb')
+
 tid = 0;
 n = 0;
 a = new Audio();
-a.src = 'burst-500ms-silence-20s.wav';
+a.src = 'burst-500ms-silence-7s.wav';
 
-function flash(cssClass, flashNum, delay, total) {
-    if (typeof total === 'undefined') total = 1;
-    if (typeof delay === 'undefined') delay = 500;
-    document.body.classList.add(cssClass);
-    setTimeout(function(){
-	document.body.classList.remove(cssClass);
-	if (total < flashNum) {
-            setTimeout(function(){
-		flash(cssClass, flashNum, delay, ++total);
-            }, delay);
-	}
-    }, delay);
+function black() {
+    document.body.style.background = 'black';
+    head.style.background = 'black';
+    play.style.background = 'black';
+    stop.style.background = 'black';
+}
+
+function white() {
+    document.body.style.background = 'white';
+    head.style.background = 'white';
+    play.style.background = 'white';
+    stop.style.background = 'white';
+    setTimeout(black, 500);
 }
 
 function again() {
     n++;
+    numb.innerHTML = n;
     a.pause();
-    a.load();
+    a.currentTime = 0;
     a.play();
-    flash('white', 1, 500);
     t = (Math.random() * 4 + 2) * 1000;
     tid = setTimeout(again, t);
 }
 
-document.getElementById('play').addEventListener('click', (event) => {
-    again();
+// // laggy on iphone
+// a.addEventListener('timeupdate', (event) => {
+//     if (a.currentTime == 0) {
+// 	white();
+//     }
+// });
+
+a.addEventListener('seeked', (event) => {
+    white();
 });
 
-document.getElementById('stop').addEventListener('click', (event) => {
+play.addEventListener('click', (event) => {
+    a.play();
+    t = 1000;
+    tid = setTimeout(again, t);
+});
+
+stop.addEventListener('click', (event) => {
     a.pause();
     if (tid != 0) {
 	clearTimeout(tid);

@@ -1,4 +1,4 @@
-sox -q -n silence-20s.wav trim 0.0 20
+sox -q -n silence-7s.wav trim 0.0 7
 sox -q -n burst-500ms.wav synth noise delay 0 remix - fade 0 0.5 0 norm -1
-sox -m burst-500ms.wav silence-20s.wav burst-500ms-silence-20s.wav
+sox -m burst-500ms.wav silence-7s.wav burst-500ms-silence-7s.wav
 # http://billposer.org/Linguistics/Computation/SoxTutorial.html#silence
