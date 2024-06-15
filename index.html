@@ -9,6 +9,12 @@
 body { background-color: black; color: white; padding: 1em 1em 2em 70px; }
 h1 { background-color: black; color: white; margin: 0px; padding: 0px; }
 button { background-color: black; color: white; padding: 14px; font-size: 24px; border: 2px solid powderblue; border-radius: 12px; }
+div.links { font-family: Verdana, Arial, Helvetica; }
+a.links { font-family: Verdana, Arial, Helvetica; }
+:link { color: white; background: black; text-decoration: none; }
+:visited { color: white; background: black; }
+a:link img, a:visited img { border-style: none }
+
 .white {
     animation: whiteflash 0.5s 2 alternate-reverse ease-out;
 }
@@ -21,7 +27,7 @@ button { background-color: black; color: white; padding: 14px; font-size: 24px; 
 </head>
 <body>
   <h1 id="head">ameliorating hemianopia</h1>
-  <p>500ms noise burst with cotemporal white flash.</p>
+  <p id="para">a repeating 500ms stimulus, noise with cotemporal white flash, at random two to six second intervals, with a counter.<br><br>use in a dark room, on a mobile phone 3m away, set maximum volume, use phone speakers not bluetooth, set maximum brightness, turn off true tone, disable browser toolbars, turn on full screen, set up and fix eyes on another target, position the phone within the affected visual field.<br><br>a prototype apparatus, reproducing some of the configuration in the paper.<!-- https://www.jneurosci.org/content/43/6/1018 ameliorating hemianopia with multisensory training --></p>
   <button id="play" type="button">play</button>
   <button id="stop" type="button">stop</button>
   <p id="numb"></p>
