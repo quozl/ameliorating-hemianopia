@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+<title>ameliorating-hemianopia</title>
+<style>
+* { font-family: Verdana, Arial, Helvetica; }
+body { background-color: black; color: white; padding: 1em 1em 2em 70px; }
+h1 { background-color: black; color: white; margin: 0px; padding: 0px; }
+button { background-color: black; color: white; padding: 14px; font-size: 24px; border: 2px solid powderblue; border-radius: 12px; }
+.white {
+    animation: whiteflash 0.5s 2 alternate-reverse ease-out;
+}
+@keyframes whiteflash {
+  to {
+    background-color: #FFFFFF;
+  }
+}
+</style>
+</head>
+<body>
+  <h1>ameliorating-hemianopia</h1>
+  <p>a noise burst with visual correlated flash.</p>
+  <button id="play" type="button">play</button>
+  <button id="stop" type="button">stop</button>
+</body>
+<script src="go.js"></script>
+</html>
