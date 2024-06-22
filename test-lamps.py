@@ -40,23 +40,19 @@ for i in range(1):
     # measure the time to turn on
     m = 0
     time.sleep(0.25)
-    t0 = time.monotonic()
     lamp.value = True
     while sensor.value < c_on * 0.90:
         microcontroller.delay_us(100)
         m += 1
-    t1 = time.monotonic()
 
     # measure the time to turn off
     n = 0
     time.sleep(0.25)
-    t2 = time.monotonic()
     lamp.value = False
     while sensor.value > c_on * 0.90:
         microcontroller.delay_us(100)
         n += 1
-    t3 = time.monotonic()
 
-    print(i, c_off, c_on, t0, t1, m, t2, t3, n)
+    print(i, c_off, c_on, m, n)
 
 print("stop")
