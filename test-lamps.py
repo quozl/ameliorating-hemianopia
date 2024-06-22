@@ -19,36 +19,44 @@ import board
 import digitalio
 import analogio
 import time
+import microcontroller
 
 lamp = digitalio.DigitalInOut(board.D12)
 lamp.direction = digitalio.Direction.OUTPUT
+lamp.value = False
 
 sensor = analogio.AnalogIn(board.A0)
 
-for n in range(20):
-    dark1 = sensor.value
+for i in range(1):
 
+    # calibrate ambient light with lamp off versus lamp on
+    time.sleep(0.25)
+    c_off = sensor.value
     lamp.value = True
-
-    time.sleep(0.0001)
-    light1 = sensor.value
-
-    time.sleep(0.0002)
-    light2 = sensor.value
-
-    time.sleep(0.0004)
-    light3 = sensor.value
-
-    time.sleep(0.0008)
-    light4 = sensor.value
-
-    time.sleep(0.0016)
-    light5 = sensor.value
-
+    time.sleep(0.25)
+    c_on = sensor.value
     lamp.value = False
-    time.sleep(0.5)
-    dark2 = sensor.value
 
-    print(n, dark1, light1, light2, light3, light4, light5, dark2)
+    # measure the time to turn on
+    m = 0
+    time.sleep(0.25)
+    t0 = time.monotonic()
+    lamp.value = True
+    while sensor.value < c_on * 0.90:
+        microcontroller.delay_us(100)
+        m += 1
+    t1 = time.monotonic()
+
+    # measure the time to turn off
+    n = 0
+    time.sleep(0.25)
+    t2 = time.monotonic()
+    lamp.value = False
+    while sensor.value > c_on * 0.90:
+        microcontroller.delay_us(100)
+        n += 1
+    t3 = time.monotonic()
+
+    print(i, c_off, c_on, t0, t1, m, t2, t3, n)
 
 print("stop")
